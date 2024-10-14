@@ -1,0 +1,79 @@
+@model List<AspnetCoreMvcStarter.Models.BankPayment_aura>
+@{
+    Layout = "_ContentNavbarLayout";
+}
+
+<div class="card">
+    <div class="card-datatable table-responsive pb-0">
+        <table id="transactionsTable" class="table">
+            <thead class="border-top">
+                <tr class="text-nowrap">
+                    <th></th>
+                    <th>S.No</th>
+                    <th>Supplier</th>
+                    <th>Transaction Date</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>S.No</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    string statusClass = "info";
+
+                    if (!string.IsNullOrWhiteSpace(item.Status))
+                    {
+                        string lowerCaseStatus = item.Status.ToLower();
+
+                        if (lowerCaseStatus == "paid")
+                        {
+                            statusClass = "success";
+                        }
+                        else if (lowerCaseStatus == "due")
+                        {
+                            statusClass = "warning";
+                        }
+                        else if (lowerCaseStatus == "canceled")
+                        {
+                            statusClass = "danger";
+                        }
+                    }
+
+                    <tr>
+                        <td></td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td class="text-nowrap fw-medium text-heading">
+                            @Html.DisplayFor(modelItem => item.Supplier)
+                        </td>
+                        <td>
+                            @item.TransactionDate.ToString("dd MMMM, yy")
+                        </td>
+                        <td>
+                            @item.DueDate.ToString("dd MMMM, yy")
+                        </td>
+                        <td>
+                            $@item.Total
+                        </td>
+                        <td>
+                            <div class="badge bg-@statusClass rounded-pill">
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </div>
+                        </td>
+                        <td class="text-nowrap">
+                            <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-sm btn-icon shadow-none"><i class='bx bx-edit'></i></a>
+                            <a href="/Transactions/Delete/@item.Id" class="btn btn-sm btn-icon shadow-none delete-transaction" data-transaction-username="@Html.DisplayFor(modelItem => item.Supplier)"><i class="bx bx-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="~/js/transactions-list.js"></script>
+
