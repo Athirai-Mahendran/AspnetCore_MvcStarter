@@ -4,6 +4,7 @@
 }
 
 <div class="card">
+  <h5 class="card-header">Bank Payments</h5>
     <div class="card-datatable table-responsive pb-0">
         <table id="transactionsTable" class="table">
             <thead class="border-top">
@@ -19,11 +20,11 @@
                 </tr>
             </thead>
             <tbody>
-
+               
                 @foreach (var item in Model)
                 {
                     string statusClass = "info";
-
+ 
                     if (!string.IsNullOrWhiteSpace(item.Status))
                     {
                         string lowerCaseStatus = item.Status.ToLower();
@@ -54,7 +55,7 @@
                             @item.TransactionDate.ToString("dd MMMM, yy")
                         </td>
                         <td>
-                            @item.DueDate.ToString("dd MMMM, yy")
+                            @item.DueDate.ToString("dd MMMM, yy") 
                         </td>
                         <td>
                             $@item.Total
