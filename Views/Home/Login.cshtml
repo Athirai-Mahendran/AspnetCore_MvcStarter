@@ -3,7 +3,7 @@
 
 
 
-    ViewData["Title"] = "Login Basic - Pages";
+    ViewData["Title"] = "Login";
 }
 
 @section VendorStyles {
@@ -83,19 +83,19 @@
                     <!--register popup-->
                     <form id="formRegistration" class="mb-3" action="/Auth/RegisterBasic" method="POST" style="display: none;">
                         <div class="mb-3">
-                            <label for="regEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="regEmail" name="email" placeholder="Enter your email" required>
+                            <label for="regEmail" class="form-label">Email/Phone Number</label>
+                            <input type="text" class="form-control" id="regEmail" name="email" placeholder="Enter your email" required>
                         </div>
-                        <div class="mb-3">
+                        @* <div class="mb-3">
                             <label for="regPassword" class="form-label">Password</label>
                             <input type="password" class="form-control" id="regPassword" name="password" placeholder="Enter your password" required>
                         </div>
                         <div class="mb-3">
                             <label for="regEmail" class="form-label">Confirm Password</label>
                             <input type="password" class="form-control" id="regConPassword" name="con-password" placeholder="Re-Enter your password" required>
-                        </div>
+                        </div> *@
                         <div class="mb-3">
-                            <button class="btn btn-primary d-grid w-100" type="submit">Register</button>
+                            <button class="btn btn-primary d-grid w-100" type="submit">Send OTP</button>
                         </div>
                         <p class="text-center">
                             <span>Already have an account?</span>
@@ -142,4 +142,5 @@
             registerForm.style.display = 'block';
         }
     }
+
 </script>

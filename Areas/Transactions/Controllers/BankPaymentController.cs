@@ -1,3 +1,4 @@
+using AspnetCoreMvcStarter.Controllers;
 using AspnetCoreMvcStarter.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,8 +7,18 @@ namespace AspnetCoreMvcStarter.Areas.Transactions.Controllers
   [Area("Transactions")]
   public class BankPaymentController : Controller
   {
+    private readonly ILogger<HomeController> _logger;
+
+    public BankPaymentController(ILogger<HomeController> logger)
+    {
+      _logger = logger;
+    }
+
+
     public IActionResult Index()
     {
+      _logger.LogWarning("Visited the Privacy page.");
+
       string[] status = ["Paid", "Due", "Cancelled", "Cancelled", "Paid"];
       List<BankPayment_aura> bankPayment_ = new List<BankPayment_aura>();
       for (int i = 0; i < 5; i++)

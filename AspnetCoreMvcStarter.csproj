@@ -5,6 +5,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Areas\Transactions\Data\**" />
+    <Compile Remove="Areas\Transactions\Models\**" />
+    <Compile Remove="Entity_Migration\**" />
+    <Content Remove="Areas\Transactions\Data\**" />
+    <Content Remove="Areas\Transactions\Models\**" />
+    <Content Remove="Entity_Migration\**" />
+    <EmbeddedResource Remove="Areas\Transactions\Data\**" />
+    <EmbeddedResource Remove="Areas\Transactions\Models\**" />
+    <EmbeddedResource Remove="Entity_Migration\**" />
+    <None Remove="Areas\Transactions\Data\**" />
+    <None Remove="Areas\Transactions\Models\**" />
+    <None Remove="Entity_Migration\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -17,14 +31,21 @@
     </PackageReference>
     <!--<PackageReference Include="Microsoft.NET.Runtime.WebAssembly.Sdk" Version="8.0.8" />-->
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.5" />
+    <PackageReference Include="Serilog" Version="4.2.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="9.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
      <None Update="AspnetCoreMvcStarterContext.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Transactions\Data\" />
-    <Folder Include="Areas\Transactions\Models\" />
-    <Folder Include="Entity_Migration\" />
+    <Folder Include="DB_Scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Service_Lib\Service_Lib.csproj" />
+    <ProjectReference Include="..\Starter_DB\Starter_DB.csproj" />
   </ItemGroup>
 </Project>
