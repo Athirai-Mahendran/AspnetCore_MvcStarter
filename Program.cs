@@ -1,8 +1,20 @@
 using Serilog;
+using Starter_API.Hubs;
+using Starter_Proxy;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSignalR();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+//Add BaseServiceProxy
+builder.Services.AddHttpClient<ServiceProxy>();
+builder.Services.AddTransient<ServiceProxy>();
+
+//SignalR
+//builder.Services.AddSingleton(sp => new HubConnectionBuilder()
+//    .WithUrl("https://localhost:5001/notificationHub")  // Update with your actual API URL
+//    .Build());
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -26,6 +38,16 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+//redirect 404 to 
+app.UseStatusCodePages(async context =>
+{
+  if (context.HttpContext.Response.StatusCode == 404)
+  {
+    context.HttpContext.Response.Redirect("/WorkOut/WorkOut/NotFound");
+  }
+});
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -39,5 +61,7 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Login}/{id?}");
+
+app.MapHub<NotificationHub>("/notificationHub");
 
 app.Run();

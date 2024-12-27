@@ -19,6 +19,7 @@
     <None Remove="Entity_Migration\**" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -29,8 +30,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
     <!--<PackageReference Include="Microsoft.NET.Runtime.WebAssembly.Sdk" Version="8.0.8" />-->
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.5" />
     <PackageReference Include="Serilog" Version="4.2.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="9.0.0" />
@@ -46,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Service_Lib\Service_Lib.csproj" />
-    <ProjectReference Include="..\Starter_DB\Starter_DB.csproj" />
+    <ProjectReference Include="..\Starter_API\Starter_API.csproj" />
+    <ProjectReference Include="..\Starter_Proxy\Starter_Proxy.csproj" />
   </ItemGroup>
 </Project>
